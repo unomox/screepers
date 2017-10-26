@@ -15,7 +15,7 @@ const harvesterSuffix = Math.floor(Math.random() * 999);
 //console.log(harvesterCap);
 if (harvesterCount < harvesterCap) {
 	Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], "Harvester" + harvesterSuffix);	
-	console.log(harvesterCount);
-	console.log(harvesterCap);
-	console.log(harvesterSuffix)
+	console.log("havesterCount " + harvesterCount);
+	console.log("harvesterCap " +harvesterCap);
+	console.log("harvesterSuffix " + harvesterSuffix)
 }
