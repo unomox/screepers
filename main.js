@@ -27,6 +27,6 @@ const upgraderCount = Object.keys(Game.creeps).length;
 const upgraderCap = Globals.gUpgraderCap;
 const upgraderSuffix = Math.floor(Math.random() * 999);
 
-if (harvesterCount < harvesterCap) {
+if (upgraderCount < upgraderCap) {
 	Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], "Upgrader" + upgraderSuffix);	
 }
