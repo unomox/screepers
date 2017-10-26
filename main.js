@@ -1,6 +1,6 @@
 var roleHarvester = require('role.harvester');
-var gHarvesterCap = require('globals');
-var gHarvesterSuffix = require('globals');
+var Globals = require('globals');
+
 module.exports.loop = function () {
 
     for(var name in Game.creeps) {
@@ -9,13 +9,13 @@ module.exports.loop = function () {
     }
 }
 const harvesterCount = Object.keys(Game.creeps).length;
-const harvesterCap = gHarvesterCap;
-const harvesterSuffix = gHarvesterSuffix;
+const harvesterCap = Globals.gHarvesterCap;
+const harvesterSuffix = Globals.gHarvesterSuffix;
 console.log(harvesterCount);
 console.log(harvesterCap);
 if (harvesterCount < harvesterCap) {
-	gHarvesterSuffix += 1;
-	Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], ("Harvester" + gHarvesterSuffix));	
+	Globals.gHarvesterSuffix += 1;
+	Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], ("Harvester" + Globals.gHarvesterSuffix));	
 	//console.log(harvesterCount);
 	//console.log(harvesterCap);
 }
