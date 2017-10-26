@@ -1,5 +1,5 @@
 module.exports.loop = function () {
-    var creep = Game.creeps['Harvester1'];
+    var creep = Game.creeps['Harvester2'];
 
     if(creep.carry.energy < creep.carryCapacity) {
         var sources = creep.room.find(FIND_SOURCES);
