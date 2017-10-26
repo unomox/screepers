@@ -7,7 +7,7 @@
  * mod.thing == 'a thing'; // true
  */
 const gHarvesterCap = 5;
-const gHarvesterSuffix = 1;
+const gHarvesterSuffix = {};
 
 module.exports = {
 gHarvesterCap,
