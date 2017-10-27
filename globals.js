@@ -6,8 +6,10 @@
  * var mod = require('sfdg');
  * mod.thing == 'a thing'; // true
  */
-const gHarvesterCap = 5;
+const gHarvesterCap = 3;
 const gHarvesterSuffix = {};
+const gUpgraderCap = 2;
+const gUpgraderSuffix = {};
 
 module.exports = {
 gHarvesterCap,
