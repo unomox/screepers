@@ -25,6 +25,7 @@ if (harvesterCount < harvesterCap && (Game.spawns['Spawn1'].energy) >= 200) {
 	console.log(currentHarvester);
 	Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], currentHarvester);
 	Game.creeps[currentHarvester].memory.role = 'harvester';
+	Game.creeps[currentHarvester].memory.resourceGroup = '1';
 }
 
 const upgraderCount = _(Game.creeps).filter( { memory: { role: 'upgrader' } } ).size();
@@ -32,12 +33,12 @@ const upgraderCap = Globals.gUpgraderCap;
 const upgraderSuffix = Math.floor(Math.random() * 999);
 var currentUpgrader = {};
 
-if (upgraderCount < upgraderCap && (Game.spawns['Spawn1'].energy) >= 200) {
+if (upgraderCount < upgraderCap && (Game.spawns['Spawn1'].energy) >= 200 && harvesterCount == Globals.gHarvesterCount) {
 	currentUpgrader = 'Upgrader' + upgraderSuffix;
 	Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], currentUpgrader);
 	Game.creeps[currentUpgrader].memory.role = 'upgrader';
-}else{
-	console.log("cannot create upgrader")
-	console.log("Upgrader Cap: " + upgraderCap)
-	console.log("Upgrader Count: " + upgraderCount)
+//}else{
+	//console.log("cannot create upgrader")
+	//console.log("Upgrader Cap: " + upgraderCap)
+	//console.log("Upgrader Count: " + upgraderCount)
 }

@@ -6,12 +6,16 @@
  * var mod = require('sfdg');
  * mod.thing == 'a thing'; // true
  */
-const gHarvesterCap = 3;
+const gHarvesterCap = 10;
 const gHarvesterSuffix = {};
 const gUpgraderCap = 2;
 const gUpgraderSuffix = {};
+var sourceTicker = 1;
 
 module.exports = {
 gHarvesterCap,
-gHarvesterSuffix
+gHarvesterSuffix,
+gUpgraderCap,
+gUpgraderSuffix,
+sourceTicker
 };
