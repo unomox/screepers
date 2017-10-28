@@ -11,11 +11,15 @@ const gHarvesterSuffix = {};
 const gUpgraderCap = 2;
 const gUpgraderSuffix = {};
 var sourceTicker = 1;
+var resourceIntensity= 3;
+var gResourceTicker = {};
 
 module.exports = {
 gHarvesterCap,
 gHarvesterSuffix,
 gUpgraderCap,
 gUpgraderSuffix,
-sourceTicker
+sourceTicker,
+resourceIntensity,
+gResourceTicker
 };
