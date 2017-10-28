@@ -69,5 +69,6 @@ if (upgraderCount < upgraderCap && (Game.spawns['Spawn1'].energy) >= 200 && harv
 	Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], currentUpgrader);
 	Game.creeps[currentUpgrader].memory.role = 'upgrader';
 	Game.creeps[currentUpgrader].memory.resourceGroup = Memory.resourceGroupTracker;
+	Game.creeps[currentUpgrader].memory.inventoryLevel = "Empty";
 	console.log('Current Upgrader Number: ' + currentUpgrader);
 }
