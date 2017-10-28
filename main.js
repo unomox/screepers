@@ -1,5 +1,6 @@
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
+var roleBuilder = require('role.builder');
 var Globals = require('globals');
 
 function groupTracker(){
@@ -29,6 +30,14 @@ function upgraderTracker(){
 	}
 }
 
+function builderTracker(){
+	if (Memory.builderTracker == undefined){
+	Memory.builderTracker = 0;
+	}else{
+	Memory.builderTracker++;
+	}
+}
+
 module.exports.loop = function () {
 
     for(var name in Game.creeps) {
@@ -39,6 +48,9 @@ module.exports.loop = function () {
         if(creep.memory.role == 'upgrader') {
         	roleUpgrader.run(creep);
         }
+        if(creep.memory.role == 'builder') {
+        	roleBuilder.run(creep);
+        }		
     }
 }
 
@@ -71,4 +83,23 @@ if (upgraderCount < upgraderCap && (Game.spawns['Spawn1'].energy) >= 200 && harv
 	Game.creeps[currentUpgrader].memory.resourceGroup = Memory.resourceGroupTracker;
 	Game.creeps[currentUpgrader].memory.inventoryLevel = "Empty";
 	console.log('Current Upgrader Number: ' + currentUpgrader);
+}
+
+const builderCount = _(Game.creeps).filter( { memory: { role: 'builder' } } ).size();
+const builderCap = Globals.gBuilderCap;
+//const builderSuffix = Math.floor(Math.random() * 999);
+var currentbuilder = {};
+
+console.log("builderCount: " + builderCount + ", Globals.gBuilderCap: " + Globals.gBuilderCap);
+console.log("harvesterCount: " + harvesterCount + ", Globals.gHarvesterCap: " + Globals.gHarvesterCap);
+console.log("upgraderCount: " + upgraderCount + ", Globals.gUpgraderCap: " + Globals.gUpgraderCap);
+
+if (builderCount < builderCap && (Game.spawns['Spawn1'].energy) >= 200 && harvesterCount == Globals.gHarvesterCap && upgraderCount == Globals.gUpgraderCap) {
+	groupTracker();
+	builderTracker();
+	currentbuilder = 'builder' + Memory.builderTracker;
+	Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], currentbuilder);
+	Game.creeps[currentbuilder].memory.role = 'builder';
+	Game.creeps[currentbuilder].memory.resourceGroup = Memory.resourceGroupTracker;
+	console.log('Current builder Number: ' + currentbuilder);
 }
