@@ -8,7 +8,7 @@
  */
 const gHarvesterCap = 4;
 const gHarvesterSuffix = {};
-const gUpgraderCap = 2;
+const gUpgraderCap = 4;
 const gUpgraderSuffix = {};
 var sourceTicker = 1;
 var resourceIntensity= 2;

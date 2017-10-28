@@ -62,10 +62,10 @@ const upgraderCap = Globals.gUpgraderCap;
 //const upgraderSuffix = Math.floor(Math.random() * 999);
 var currentUpgrader = {};
 
-if (upgraderCount < upgraderCap && (Game.spawns['Spawn1'].energy) >= 200 && harvesterCount == Globals.gHarvesterCount) {
+if (upgraderCount < upgraderCap && (Game.spawns['Spawn1'].energy) >= 200 && harvesterCount == Globals.gHarvesterCap) {
 	groupTracker();
 	upgraderTracker();
-	currentUpgrader = 'Upgrader' + upgraderTracker;
+	currentUpgrader = 'Upgrader' + Memory.upgraderTracker;
 	Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], currentUpgrader);
 	Game.creeps[currentUpgrader].memory.role = 'upgrader';
 	Game.creeps[currentUpgrader].memory.resourceGroup = Memory.resourceGroupTracker;
