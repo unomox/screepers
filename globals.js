@@ -6,12 +6,12 @@
  * var mod = require('sfdg');
  * mod.thing == 'a thing'; // true
  */
-const gHarvesterCap = 10;
+const gHarvesterCap = 4;
 const gHarvesterSuffix = {};
 const gUpgraderCap = 2;
 const gUpgraderSuffix = {};
 var sourceTicker = 1;
-var resourceIntensity= 3;
+var resourceIntensity= 2;
 var gResourceTicker = {};
 
 module.exports = {
