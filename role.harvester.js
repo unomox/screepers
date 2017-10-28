@@ -23,6 +23,9 @@ var roleHarvester = {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#66ff66'}});
                 }
             }
+			else {
+				creep.moveTo(targets[0]);
+			}
         }
     }
 };

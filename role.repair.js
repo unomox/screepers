@@ -2,7 +2,11 @@ var roleRepairer = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-
+	
+	if(creep.carry.energy == 0 && creep.memory.inventoryLevel == "Full") {
+		creep.memory.inventoryLevel = "Empty";
+	}
+		
 	if(creep.carry.energy < creep.carryCapacity && creep.memory.inventoryLevel == "Empty") {
 		var sources = creep.room.find(FIND_SOURCES);
         //var spwn = creep.pos.findClosest(FIND_MY_SPAWNS);
@@ -44,6 +48,9 @@ var roleRepairer = {
             if(targets.length > 0) {
                 if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#66ff66'}});
+					if (creep.carry.energy == 0) {
+					creep.memory.inventoryLevel = "Empty";
+					}
                 }
             }
 		}

@@ -6,17 +6,20 @@
  * var mod = require('sfdg');
  * mod.thing == 'a thing'; // true
  */
-const gHarvesterCap = 2;
+const gHarvesterCap = 4;
 const gHarvesterSuffix = {};
 const gUpgraderCap = 3;
 const gUpgraderSuffix = {};
-const gBuilderCap = 6;
+const gBuilderCap = 5;
 const gBuilderSuffix = {};
 const gRepairerCap = 1;
 const gRepairerSuffix = {};
 var sourceTicker = 1;
 var resourceIntensity= 2;
 var gResourceTicker = {};
+var gResourceCap = 350;
+Game.spawns['Spawn1'].memory.gResourceCap = 350;
+
 
 module.exports = {
 gHarvesterCap,
@@ -29,5 +32,6 @@ gRepairerCap,
 gRepairerSuffix,
 sourceTicker,
 resourceIntensity,
-gResourceTicker
+gResourceTicker,
+gResourceCap
 };
