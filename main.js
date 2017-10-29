@@ -4,6 +4,7 @@ var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repair');
 var Globals = require('globals');
  
+// initialize global trackers
 function groupTracker(){
 	if (Memory.resourceGroupTracker == undefined){
 	Memory.resourceGroupTracker = 0;
@@ -47,8 +48,7 @@ function repairerTracker(){
 	}
 }
 
-
-
+//export roles
 module.exports.loop = function () {
 
     for(var name in Game.creeps) {
@@ -67,6 +67,7 @@ module.exports.loop = function () {
         }		
     }
 
+    //initialize energy level tracking variables
 const resourceCap = Globals.gResourceCap;
 var energyAvailable = 0;
 
@@ -77,10 +78,14 @@ energyAvailable += Game.spawns.Spawn1.energy;
 		}
 	});
 
+//Check to see if something is spawning
+const spawning = Game.spawns['Spawn1'].spawning;
+
+//Create harvester
 const harvesterCount = _(Game.creeps).filter( { memory: { role: 'harvester' } } ).size();
 const harvesterCap = Globals.gHarvesterCap;
 var currentHarvester = {};
-const spawning = Game.spawns['Spawn1'].spawning;
+
 
 if (harvesterCount < harvesterCap && energyAvailable >= resourceCap && spawning == null) {
 	groupTracker();
@@ -92,6 +97,7 @@ if (harvesterCount < harvesterCap && energyAvailable >= resourceCap && spawning 
 	console.log('Current Harvester Number: ' + currentHarvester);
 }
 
+//create upgrader
 const upgraderCount = _(Game.creeps).filter( { memory: { role: 'upgrader' } } ).size();
 const upgraderCap = Globals.gUpgraderCap;
 var currentUpgrader = {};
@@ -100,13 +106,14 @@ if (upgraderCount < upgraderCap && energyAvailable >= resourceCap && harvesterCo
 	groupTracker();
 	upgraderTracker();
 	currentUpgrader = 'Upgrader' + Memory.upgraderTracker;
-	Game.spawns['Spawn1'].spawnCreep( [WORK, WORK, CARRY, MOVE, MOVE], currentUpgrader);
+	Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], currentUpgrader);
 	Game.creeps[currentUpgrader].memory.role = 'upgrader';
 	Game.creeps[currentUpgrader].memory.resourceGroup = Memory.resourceGroupTracker;
 	Game.creeps[currentUpgrader].memory.inventoryLevel = "Empty";
 	console.log('Current Upgrader Number: ' + currentUpgrader);
 }
 
+//create builder
 const builderCount = _(Game.creeps).filter( { memory: { role: 'builder' } } ).size();
 const builderCap = Globals.gBuilderCap;
 var currentBuilder = {};
@@ -122,6 +129,7 @@ if (builderCount < builderCap && energyAvailable >= resourceCap && harvesterCoun
 	console.log('Current builder Number: ' + currentBuilder);
 }
 
+//create repairer
 const repairerCount = _(Game.creeps).filter( { memory: { role: 'repairer' } } ).size();
 const repairerCap = Globals.gRepairerCap;
 var currentRepairer = {};
