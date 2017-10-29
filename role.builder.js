@@ -16,14 +16,14 @@ var roleBuilder = {
 	        var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
             if(targets.length) {
                 if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#66ff66'}});
+                    creep.moveTo(targets[0], {maxRooms: 1}, {visualizePathStyle: {stroke: '#66ff66'}});
                 }
             }
 	    }
 	    else {
 	        var sources = creep.room.find(FIND_SOURCES);
             if(creep.harvest(sources[creep.memory.resourceGroup]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[creep.memory.resourceGroup], {visualizePathStyle: {stroke: '#ffff00'}});
+                creep.moveTo(sources[creep.memory.resourceGroup], {maxRooms: 1}, {visualizePathStyle: {stroke: '#ffff00'}});
             }
 	    }
 	}

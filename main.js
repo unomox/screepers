@@ -16,38 +16,46 @@ function groupTracker(){
 	}
 }
 
-function harvesterTracker(){
-	if (Memory.harvesterTracker == undefined){
-	Memory.harvesterTracker = 0;
-	}else{
-	Memory.harvesterTracker++;
-	}
+// creep tracking function
+function creepTracker(creepType) {
+	var creepType = creepType;
+	
+	switch(creepType) {
+		case 'harvester':
+			if (Memory.harvesterTracker == undefined){
+				Memory.harvesterTracker = 0;
+			}else{
+				Memory.harvesterTracker++;
+			}
+        break;
+		case 'upgrader':
+				if (Memory.upgraderTracker == undefined){
+					Memory.upgraderTracker = 0;
+				}else{
+					Memory.upgraderTracker++;
+				}
+		break;
+		case 'builder':
+				if (Memory.builderTracker == undefined){
+					Memory.builderTracker = 0;
+				}else{
+					Memory.builderTracker++;
+				}
+		break;
+		case 'repairer':
+				if (Memory.repairerTracker == undefined){
+					Memory.repairerTracker = 0;
+				}else{
+					Memory.repairerTracker++;
+				}
+		break;
+		default:
+			
+	} 
+	
 }
 
-function upgraderTracker(){
-	if (Memory.upgraderTracker == undefined){
-	Memory.upgraderTracker = 0;
-	}else{
-	Memory.upgraderTracker++;
-	}
-}
-
-function builderTracker(){
-	if (Memory.builderTracker == undefined){
-	Memory.builderTracker = 0;
-	}else{
-	Memory.builderTracker++;
-	}
-}
-
-function repairerTracker(){
-	if (Memory.repairerTracker == undefined){
-	Memory.repairerTracker = 0;
-	}else{
-	Memory.repairerTracker++;
-	}
-}
-
+// controls the spawn command based on the energy available and the current gResourceCap
 function determineSpawn(currentRole) {
 	var currentRole = currentRole;
 	switch(Globals.gResourceCap) {
@@ -109,22 +117,20 @@ energyAvailable += Game.spawns.Spawn1.energy;
 //Check to see if something is spawning
 const spawning = Game.spawns['Spawn1'].spawning;
 
-//Create harvester
-harvesterCount = _(Game.creeps).filter({ memory: { role: 'harvester' }}).size();
-//var harvesterCount = _(Game.creeps).filter( { memory: { role: 'harvester' } } ).size();
+//create harvester
+var harvesterCount = _(Game.creeps).filter({ memory: { role: 'harvester' }}).size();
 const harvesterCap = Globals.gHarvesterCap;
 var currentHarvester = {};
 
-
-
 if (harvesterCount < harvesterCap && energyAvailable >= resourceCap && spawning == null) {
 	groupTracker();
-	harvesterTracker();
+	creepTracker('harvester');
 	currentHarvester = 'Harvester' + Memory.harvesterTracker;
 	determineSpawn(currentHarvester);
 	Game.creeps[currentHarvester].memory.role = 'harvester';
 	Game.creeps[currentHarvester].memory.resourceGroup = Memory.resourceGroupTracker;
 	Game.creeps[currentHarvester].memory.inventoryLevel = "Empty";
+	Game.creeps[currentHarvester].memory.originRoom = "E19N8";
 	console.log('Current Harvester Number: ' + currentHarvester);
 }
 
@@ -135,12 +141,13 @@ var currentUpgrader = {};
 
 if (upgraderCount < upgraderCap && energyAvailable >= resourceCap && harvesterCount == Globals.gHarvesterCap && spawning == null) {
 	groupTracker();
-	upgraderTracker();
+	creepTracker('upgrader');
 	currentUpgrader = 'Upgrader' + Memory.upgraderTracker;
 	determineSpawn(currentUpgrader);
 	Game.creeps[currentUpgrader].memory.role = 'upgrader';
 	Game.creeps[currentUpgrader].memory.resourceGroup = Memory.resourceGroupTracker;
 	Game.creeps[currentUpgrader].memory.inventoryLevel = "Empty";
+	Game.creeps[currentUpgrader].memory.originRoom = "First";
 	console.log('Current Upgrader Number: ' + currentUpgrader);
 }
 
@@ -151,28 +158,30 @@ var currentBuilder = {};
 
 if (builderCount < builderCap && energyAvailable >= resourceCap && harvesterCount == Globals.gHarvesterCap && upgraderCount == Globals.gUpgraderCap && spawning == null) {
 	groupTracker();
-	builderTracker();
+	creepTracker('builder');
 	currentBuilder = 'builder' + Memory.builderTracker;
 	determineSpawn(currentBuilder);
 	Game.creeps[currentBuilder].memory.role = 'builder';
 	Game.creeps[currentBuilder].memory.resourceGroup = Memory.resourceGroupTracker;
 	Game.creeps[currentBuilder].memory.inventoryLevel = "Empty";
+	Game.creeps[currentBuilder].memory.originRoom = "First";
 	console.log('Current builder Number: ' + currentBuilder);
 }
 
-//create repairer
+// create repairer
 const repairerCount = _(Game.creeps).filter( { memory: { role: 'repairer' } } ).size();
 const repairerCap = Globals.gRepairerCap;
 var currentRepairer = {};
 
 if (repairerCount < repairerCap && energyAvailable >= resourceCap && harvesterCount == Globals.gHarvesterCap && upgraderCount == Globals.gUpgraderCap && builderCount == Globals.gBuilderCap && spawning == null) {
 	groupTracker();
-	repairerTracker();
+	creepTracker('repairer');
 	currentRepairer = 'repairer' + Memory.repairerTracker;
 	determineSpawn(currentRepairer);
 	Game.creeps[currentRepairer].memory.role = 'repairer';
 	Game.creeps[currentRepairer].memory.resourceGroup = Memory.resourceGroupTracker;
 	Game.creeps[currentRepairer].memory.inventoryLevel = "Empty";
+	Game.creeps[currentRepairer].memory.originRoom = "First";
 	console.log('Current Repairer Number: ' + currentRepairer);
 }
 
@@ -183,7 +192,6 @@ for(var i in Memory.creeps) {
     }
 }
 
-
 /* Console Messages area */
 if (Memory.consoleTimer == undefined){
 	Memory.consoleTimer = 0;
@@ -191,12 +199,12 @@ if (Memory.consoleTimer == undefined){
 	Memory.consoleTimer++;
 }
 //       Set this number \   /  below to change the interval of messaging
-if(Memory.consoleTimer >= 30) {
-	console.log("[=================================================================================]");
-	console.log("Current Energy: " + energyAvailable + " | Current Resource Cap: " + energyCapacity + " | Global Resource Cap: " + Globals.gResourceCap);
-	console.log("Current Harvester Cap:   " + harvesterCap + " | Current Upgrader Cap:   " + upgraderCap + " | Current Builder Cap:   " + builderCap);
-	console.log("Current Harvester Count: " + harvesterCount + " | Current Upgrader Count: " + upgraderCount + " | Current Builder Count: " + builderCount);
-	console.log("[=================================================================================]");
+if(Memory.consoleTimer >= 5) {
+	console.log("[===============================================================================================================]");
+console.log("[ Current Energy: " + energyAvailable + " | Current Resource Cap: " + energyCapacity + " | Global Resource Cap: " + Globals.gResourceCap + " 					]");
+	console.log("[ Current Harvester Cap:   " + harvesterCap + " | Current Upgrader Cap:   " + upgraderCap + " | Current Builder Cap:   " + builderCap + " | Current Repairer Cap:   " + repairerCap + " ]");
+	console.log("[ Current Harvester Count: " + harvesterCount + " | Current Upgrader Count: " + upgraderCount + " | Current Builder Count: " + builderCount + " | Current Repairer Count: " + repairerCount + " ]");
+	console.log("[===============================================================================================================]");
 	Memory.consoleTimer = 0;
 }
 	
