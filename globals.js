@@ -8,16 +8,19 @@
  */
 const gHarvesterCap = 4;
 const gHarvesterSuffix = {};
-const gUpgraderCap = 3;
+const gUpgraderCap = 2;
 const gUpgraderSuffix = {};
-const gBuilderCap = 5;
+const gBuilderCap = 1;
 const gBuilderSuffix = {};
 const gRepairerCap = 1;
 const gRepairerSuffix = {};
 var sourceTicker = 1;
 var resourceIntensity= 2;
 var gResourceTicker = {};
-var gResourceCap = 50;
+
+// sets the maximum energy that can be spent on spawns
+var gResourceCap = 550;
+//commits the maximum energy for spawns to memory.gResourcecap
 Game.spawns['Spawn1'].memory.gResourceCap = gResourceCap;
 
 
