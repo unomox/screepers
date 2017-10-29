@@ -199,7 +199,7 @@ if (Memory.consoleTimer == undefined){
 	Memory.consoleTimer++;
 }
 //       Set this number \   /  below to change the interval of messaging
-if(Memory.consoleTimer >= 5) {
+if(Memory.consoleTimer >= 30) {
 	console.log("[===============================================================================================================]");
 console.log("[ Current Energy: " + energyAvailable + " | Current Resource Cap: " + energyCapacity + " | Global Resource Cap: " + Globals.gResourceCap + " 					]");
 	console.log("[ Current Harvester Cap:   " + harvesterCap + " | Current Upgrader Cap:   " + upgraderCap + " | Current Builder Cap:   " + builderCap + " | Current Repairer Cap:   " + repairerCap + " ]");
