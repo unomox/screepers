@@ -69,6 +69,7 @@ module.exports.loop = function () {
 
 const resourceCap = Globals.gResourceCap;
 var energyAvailable = 0;
+
 energyAvailable += Game.spawns.Spawn1.energy;
 	_.filter(Game.structures, function(structure){
 		if (structure.structureType == STRUCTURE_EXTENSION){
@@ -78,15 +79,14 @@ energyAvailable += Game.spawns.Spawn1.energy;
 
 const harvesterCount = _(Game.creeps).filter( { memory: { role: 'harvester' } } ).size();
 const harvesterCap = Globals.gHarvesterCap;
-//const harvesterSuffix = Math.floor(Math.random() * 999);
 var currentHarvester = {};
-console.log('Energy Available: ' + energyAvailable);
-console.log('Resource Cap: ' + resourceCap);
-if (harvesterCount < harvesterCap && energyAvailable >= resourceCap) {
+const spawning = Game.spawns['Spawn1'].spawning;
+
+if (harvesterCount < harvesterCap && energyAvailable >= resourceCap && spawning == null) {
 	groupTracker();
 	harvesterTracker();
 	currentHarvester = 'Harvester' + Memory.harvesterTracker;
-	Game.spawns['Spawn1'].spawnCreep( [WORK, WORK, CARRY, MOVE, MOVE], currentHarvester);
+	Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], currentHarvester);
 	Game.creeps[currentHarvester].memory.role = 'harvester';
 	Game.creeps[currentHarvester].memory.resourceGroup = Memory.resourceGroupTracker;
 	console.log('Current Harvester Number: ' + currentHarvester);
@@ -94,10 +94,9 @@ if (harvesterCount < harvesterCap && energyAvailable >= resourceCap) {
 
 const upgraderCount = _(Game.creeps).filter( { memory: { role: 'upgrader' } } ).size();
 const upgraderCap = Globals.gUpgraderCap;
-//const upgraderSuffix = Math.floor(Math.random() * 999);
 var currentUpgrader = {};
 
-if (upgraderCount < upgraderCap && energyAvailable >= resourceCap && harvesterCount == Globals.gHarvesterCap) {
+if (upgraderCount < upgraderCap && energyAvailable >= resourceCap && harvesterCount == Globals.gHarvesterCap && spawning == null) {
 	groupTracker();
 	upgraderTracker();
 	currentUpgrader = 'Upgrader' + Memory.upgraderTracker;
@@ -110,14 +109,13 @@ if (upgraderCount < upgraderCap && energyAvailable >= resourceCap && harvesterCo
 
 const builderCount = _(Game.creeps).filter( { memory: { role: 'builder' } } ).size();
 const builderCap = Globals.gBuilderCap;
-//const builderSuffix = Math.floor(Math.random() * 999);
 var currentBuilder = {};
 
-if (builderCount < builderCap && energyAvailable >= resourceCap && harvesterCount == Globals.gHarvesterCap && upgraderCount == Globals.gUpgraderCap) {
+if (builderCount < builderCap && energyAvailable >= resourceCap && harvesterCount == Globals.gHarvesterCap && upgraderCount == Globals.gUpgraderCap && spawning == null) {
 	groupTracker();
 	builderTracker();
 	currentBuilder = 'builder' + Memory.builderTracker;
-	Game.spawns['Spawn1'].spawnCreep( [WORK, WORK, CARRY, MOVE, MOVE], currentBuilder);
+	Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], currentBuilder);
 	Game.creeps[currentBuilder].memory.role = 'builder';
 	Game.creeps[currentBuilder].memory.resourceGroup = Memory.resourceGroupTracker;
 	Game.creeps[currentBuilder].memory.inventoryLevel = "Empty";
@@ -126,23 +124,18 @@ if (builderCount < builderCap && energyAvailable >= resourceCap && harvesterCoun
 
 const repairerCount = _(Game.creeps).filter( { memory: { role: 'repairer' } } ).size();
 const repairerCap = Globals.gRepairerCap;
-//const repairerSuffix = Math.floor(Math.random() * 999);
 var currentRepairer = {};
 
-if (repairerCount < repairerCap && energyAvailable >= resourceCap && harvesterCount == Globals.gHarvesterCap && upgraderCount == Globals.gUpgraderCap && builderCount == Globals.gBuilderCap) {
+if (repairerCount < repairerCap && energyAvailable >= resourceCap && harvesterCount == Globals.gHarvesterCap && upgraderCount == Globals.gUpgraderCap && builderCount == Globals.gBuilderCap && spawning == null) {
 	groupTracker();
 	repairerTracker();
 	currentRepairer = 'repairer' + Memory.repairerTracker;
-	Game.spawns['Spawn1'].spawnCreep( [WORK, WORK, CARRY, MOVE, MOVE], currentRepairer);
+	Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], currentRepairer);
 	Game.creeps[currentRepairer].memory.role = 'repairer';
 	Game.creeps[currentRepairer].memory.resourceGroup = Memory.resourceGroupTracker;
 	Game.creeps[currentRepairer].memory.inventoryLevel = "Empty";
 	console.log('Current Repairer Number: ' + currentRepairer);
 }
 
-console.log("repairerCount: " + repairerCount + ", Globals.gRepairerCap: " + Globals.gRepairerCap);
-console.log("harvesterCount: " + harvesterCount + ", Globals.gHarvesterCap: " + Globals.gHarvesterCap);
-console.log("upgraderCount: " + upgraderCount + ", Globals.gUpgraderCap: " + Globals.gUpgraderCap);
-console.log("builderCount: " + builderCount + ", Globals.gBuilderCap: " + Globals.gBuilderCap);
 
 }

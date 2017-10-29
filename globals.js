@@ -17,8 +17,8 @@ const gRepairerSuffix = {};
 var sourceTicker = 1;
 var resourceIntensity= 2;
 var gResourceTicker = {};
-var gResourceCap = 350;
-Game.spawns['Spawn1'].memory.gResourceCap = 350;
+var gResourceCap = 50;
+Game.spawns['Spawn1'].memory.gResourceCap = gResourceCap;
 
 
 module.exports = {
