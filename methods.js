@@ -67,6 +67,8 @@ function capTracker(){
 
 	
 }
+
+
 //clear dead creeps from memory
 function clearCreeps(){
 	for(var i in Memory.creeps) {

@@ -7,11 +7,8 @@ function spawnCreep(role){
 	var Role = role.charAt(0).toUpperCase() + role.slice(1);
 	
 	const spawning = Game.spawns['Spawn1'].spawning;
-	//var harvesterCount = _(Game.creeps).filter({ memory: { role: 'harvester' }}).size();
 	eval("var count = _(Game.creeps).filter({ memory: { role: \'" + role + "\' }}).size();");
-	//const harvesterCap = Globals.gHarvesterCap;
 	eval("var cap = Globals.g" + Role + "Cap;");
-	//var currentHarvester = {};
 	var current = {};
 	const resourceCap = Globals.gResourceCap;
 	var energyAvailable = 0;
@@ -44,7 +41,7 @@ energyAvailable += Game.spawns.Spawn1.energy;
 		Game.creeps[current].memory.resourceGroup = Memory.resourceGroupTracker;
 		Game.creeps[current].memory.inventoryLevel = "Empty";
 		Game.creeps[current].memory.originRoom = "E19N8";
-		console.log('Current Harvester Number: ' + current);
+		//console.log('Current Harvester Number: ' + current);
 	}
 	
 }
