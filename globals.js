@@ -14,12 +14,14 @@ const gBuilderCap = 3;
 const gBuilderSuffix = {};
 const gRepairerCap = 2;
 const gRepairerSuffix = {};
+const gAttackerCap = 3;
+const gAttackerSuffix = {};
 var sourceTicker = 1;
 var resourceIntensity= 2;
 var gResourceTicker = {};
 
 // sets the maximum energy that can be spent on spawns
-var gResourceCap = 550;
+var gResourceCap = 300;
 //commits the maximum energy for spawns to memory.gResourcecap
 Game.spawns['Spawn1'].memory.gResourceCap = gResourceCap;
 
@@ -33,6 +35,8 @@ gBuilderCap,
 gBuilderSuffix,
 gRepairerCap,
 gRepairerSuffix,
+gAttackerCap,
+gAttackerSuffix,
 sourceTicker,
 resourceIntensity,
 gResourceTicker,
