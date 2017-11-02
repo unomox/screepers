@@ -176,7 +176,7 @@ var roleAttacker = {
     creep.moveTo(posInAnotherRoom);
 	var targets = creep.pos.findClosestByRange(FIND_HOSTILE_CREEPS, {
                     filter: (creeps) => {
-                        return creeps.owner != 'shadostorm' || creeps.owner != 'm0x';
+                        return creeps.owner != 'Shadostorm' || creeps.owner != 'm0x';
                     }
             });
 

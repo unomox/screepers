@@ -53,7 +53,7 @@ function determineSpawn(currentRole) {
 				Game.spawns['Spawn1'].spawnCreep( [TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, MOVE, MOVE, MOVE], currentRole);
 			break;
 			case 400:
-				Game.spawns['Spawn1'].spawnCreep( [ATTACK, ATTACK, MOVE, MOVE], currentRole);
+				Game.spawns['Spawn1'].spawnCreep( [TOUGH, MOVE, MOVE, MOVE, ATTACK, ATTACK, ATTACK], currentRole);
 			break;
 			case 450:
 				Game.spawns['Spawn1'].spawnCreep( [ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE, MOVE], currentRole);
@@ -70,7 +70,7 @@ function determineSpawn(currentRole) {
 				Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, CARRY, CARRY, CARRY, MOVE], currentRole);
 			break;
 			case 400:
-				Game.spawns['Spawn1'].spawnCreep( [WORK, WORK, CARRY, MOVE, MOVE], currentRole);
+				Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], currentRole);
 			break;
 			case 450:
 			Game.spawns['Spawn1'].spawnCreep( [WORK, WORK, CARRY, CARRY, MOVE, MOVE], currentRole);
