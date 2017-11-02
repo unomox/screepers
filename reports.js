@@ -4,6 +4,19 @@ function primaryReport(){
 	}else{
 		Memory.consoleTimer++;
 	}
+	energyCapacity += Game.spawns.Spawn1.energyCapacity;
+	_.filter(Game.structures, function(structure){
+		if (structure.structureType == STRUCTURE_EXTENSION){
+			energyCapacity += structure.energyCapacity;
+		}
+	});
+
+	energyAvailable += Game.spawns.Spawn1.energy;
+	_.filter(Game.structures, function(structure){
+		if (structure.structureType == STRUCTURE_EXTENSION){
+			energyAvailable += structure.energy;
+		}
+	});
 	//       Set this number \   /  below to change the interval of messaging
 	if(Memory.consoleTimer >= 30) {
 		console.log("[===============================================================================================================]");

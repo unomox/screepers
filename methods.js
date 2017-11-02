@@ -34,9 +34,10 @@ function groupTracker(){
 }
 
 function creepTracker(creepType){
-	var creepType = 'Memory.' + creepType + 'Tracker';
+	var creepType = "Memory." + creepType + 'Tracker';
 	if (eval(creepType) == undefined){
-		eval(creepType) = 0;
+		creeptype = creeptype + "=0;";
+		eval(creeptype);
 	}else{
 		var creepType = creepType + '++';
 		eval(creepType)
@@ -45,22 +46,42 @@ function creepTracker(creepType){
 
 function determineSpawn(currentRole) {
 	var currentRole = currentRole;
-	switch(Globals.gResourceCap) {
-		case 350:
-			Game.spawns['Spawn1'].spawnCreep( [WORK, WORK, CARRY, MOVE], currentRole);
-        break;
-		case 400:
-			Game.spawns['Spawn1'].spawnCreep( [WORK, WORK, CARRY, MOVE, MOVE], currentRole);
-		break;
-		case 450:
+	console.log(currentRole.replace(/[^a-zA-Z]+/g, ''));
+	if(currentRole.replace(/[^a-zA-Z]+/g, '') == 'Attacker'){
+		switch(Globals.gResourceCap) {
+			case 350:
+				Game.spawns['Spawn1'].spawnCreep( [TOUGH, TOUGH, TOUGH, TOUGH, ATTACK, ATTACK, MOVE, MOVE, MOVE], currentRole);
+			break;
+			case 400:
+				Game.spawns['Spawn1'].spawnCreep( [ATTACK, ATTACK, MOVE, MOVE], currentRole);
+			break;
+			case 450:
+				Game.spawns['Spawn1'].spawnCreep( [ATTACK, ATTACK, ATTACK, MOVE, MOVE, MOVE, MOVE], currentRole);
+			break;
+			case 550:
+				Game.spawns['Spawn1'].spawnCreep( [ATTACK, ATTACK, MOVE, MOVE], currentRole);
+			break;
+			default:
+				Game.spawns['Spawn1'].spawnCreep( [ATTACK, ATTACK, MOVE, MOVE], currentRole);
+		}
+	}else{
+		switch(Globals.gResourceCap) {
+			case 350:
+				Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, CARRY, CARRY, CARRY, MOVE], currentRole);
+			break;
+			case 400:
+				Game.spawns['Spawn1'].spawnCreep( [WORK, WORK, CARRY, MOVE, MOVE], currentRole);
+			break;
+			case 450:
 			Game.spawns['Spawn1'].spawnCreep( [WORK, WORK, CARRY, CARRY, MOVE, MOVE], currentRole);
-		break;
-		case 550:
-			Game.spawns['Spawn1'].spawnCreep( [WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], currentRole);
-		break;
-		default:
-			Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], currentRole);
-	} 
+			break;
+			case 550:
+				Game.spawns['Spawn1'].spawnCreep( [WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE], currentRole);
+			break;
+			default:
+				Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], currentRole);
+		}
+	}
 }
 
 function capTracker(){

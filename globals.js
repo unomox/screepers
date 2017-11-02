@@ -6,22 +6,22 @@
  * var mod = require('sfdg');
  * mod.thing == 'a thing'; // true
  */
-const gHarvesterCap = 4;
+const gHarvesterCap = 2;
 const gHarvesterSuffix = {};
 const gUpgraderCap = 2;
 const gUpgraderSuffix = {};
-const gBuilderCap = 3;
+const gBuilderCap = 2;
 const gBuilderSuffix = {};
-const gRepairerCap = 2;
+const gRepairerCap = 1;
 const gRepairerSuffix = {};
-const gAttackerCap = 3;
+const gAttackerCap = 0;
 const gAttackerSuffix = {};
 var sourceTicker = 1;
-var resourceIntensity= 2;
+var resourceIntensity= 1;
 var gResourceTicker = {};
 
 // sets the maximum energy that can be spent on spawns
-var gResourceCap = 300;
+var gResourceCap = 350;
 //commits the maximum energy for spawns to memory.gResourcecap
 Game.spawns['Spawn1'].memory.gResourceCap = gResourceCap;
 
