@@ -6,37 +6,49 @@
  * var mod = require('sfdg');
  * mod.thing == 'a thing'; // true
  */
-const gHarvesterCap = 2;
-const gHarvesterSuffix = {};
-const gUpgraderCap = 2;
-const gUpgraderSuffix = {};
-const gBuilderCap = 2;
-const gBuilderSuffix = {};
-const gRepairerCap = 1;
-const gRepairerSuffix = {};
-const gAttackerCap = 0;
-const gAttackerSuffix = {};
+const gharvesterCap = 4;
+const gharvesterSuffix = {};
+const gupgraderCap = 2;
+const gupgraderSuffix = {};
+const gbuilderCap = 0;
+const gbuilderSuffix = {};
+const grepairerCap = 0;
+const grepairerSuffix = {};
+const gattackerCap = 0;
+const gattackerSuffix = {};
+const gexplorerCap = 6;
+const gexplorerSuffix = {};
+const greserverCap = 2;
+const greserverSuffix = {};
+const gcarrierCap = 1;
+const gcarrierSuffix = {};
 var sourceTicker = 1;
-var resourceIntensity= 1;
+var resourceIntensity= 2;
 var gResourceTicker = {};
 
 // sets the maximum energy that can be spent on spawns
-var gResourceCap = 350;
+var gResourceCap = 800;
 //commits the maximum energy for spawns to memory.gResourcecap
 Game.spawns['Spawn1'].memory.gResourceCap = gResourceCap;
 
 
 module.exports = {
-gHarvesterCap,
-gHarvesterSuffix,
-gUpgraderCap,
-gUpgraderSuffix,
-gBuilderCap,
-gBuilderSuffix,
-gRepairerCap,
-gRepairerSuffix,
-gAttackerCap,
-gAttackerSuffix,
+gharvesterCap,
+gharvesterSuffix,
+gupgraderCap,
+gupgraderSuffix,
+gbuilderCap,
+gbuilderSuffix,
+grepairerCap,
+grepairerSuffix,
+gattackerCap,
+gattackerSuffix,
+gexplorerCap,
+gexplorerSuffix,
+greserverCap,
+greserverSuffix,
+gcarrierCap,
+gcarrierSuffix,
 sourceTicker,
 resourceIntensity,
 gResourceTicker,
