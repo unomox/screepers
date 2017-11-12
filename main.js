@@ -49,13 +49,6 @@ module.exports.loop = function () {
 		}
     }
 
-
-	//if (_(Game.creeps).filter({ memory: { role: 'builder' }}).size() == Globals.gBuilderCap){
-	//	spawn.spawnCreep('repairer');
-	//}
-	//if (_(Game.creeps).filter({ memory: { role: 'builder' }}).size() == Globals.gBuilderCap){
-	//	spawn.spawnCreep('attacker');
-	//}
 	//clean stuff
 	methods.clearCreeps();
 	//report

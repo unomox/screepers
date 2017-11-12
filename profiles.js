@@ -3,13 +3,19 @@ var Globals = require('globals');
 //300
 var tier1Profiles = [
   ['harvester', '[MOVE, WORK, CARRY]'],
+  ['upgrader', '[MOVE, WORK, CARRY'],
+  ['repairer', '[MOVE, WORK, CARRY]'],
+  ['builder', '[MOVE, WORK, CARRY]'],
   ['attacker', '[MOVE,MOVE,ATTACK,ATTACK]'],
-  ['carrier', '\[MOVE, WORK, CARRY\]']
+  ['carrier', '[MOVE, WORK, CARRY]']
 ];
 
 //800
 var tier2Profiles = [
   ['harvester', '[MOVE, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY]'],
+  ['upgrader', '[MOVE, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY]'],
+  ['repairer', '[MOVE, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY]'],
+  ['builder', '[MOVE, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY]'],
   ['attacker', '[MOVE, MOVE, MOVE, MOVE, RANGED_ATTACK, RANGED_ATTACK, RANGED_ATTACK, RANGED_ATTACK]'],
   ['carrier', ' [CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE]'],
   ['reserver', '[CLAIM, MOVE, MOVE, MOVE, MOVE]'],

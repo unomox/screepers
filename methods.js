@@ -48,7 +48,6 @@ function groupTracker(){
 
 function creepTracker(creepType){
 	var creepType = "Memory." + creepType + 'Tracker';
-	//console.log(creepType);
 	if (eval(creepType) == undefined){
 		creeptype = 0;
 	}else{
@@ -58,35 +57,22 @@ function creepTracker(creepType){
 }
 
 function defendRoom(roomName) {
-    var hostiles = Game.rooms[roomName].find(FIND_HOSTILE_CREEPS);/*, {
-                    filter: (creeps) => {
-                        return creeps.owner != 'Shadostorm' || creeps.owner != 'm0x';
-                    }
-            });*/
+    var hostiles = Game.rooms[roomName].find(FIND_HOSTILE_CREEPS);
     if(hostiles.length > 0) {
         var username = hostiles[0].owner.username;
-		//if ($username != 'm0x' || $username != 'Shadostorm'){
 			Game.notify('User ${username} spotted in room ${roomName}');
 			var towers = Game.rooms[roomName].find(
 				FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
 			towers.forEach(tower => tower.attack(hostiles[0]));
-		//}
 	}
 }
 
 function repairRoom(roomName) {
-
 		var hpCap = 50000;
 		var towers = Game.rooms[roomName].find(
 				FIND_MY_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER}});
 		var SR = Game.rooms[roomName].find(FIND_STRUCTURES, {
-		//var SR = creep.pos.findClosestbyPath(FIND_STRUCTURES, {
-		//var SR = creep.pos.findClosest(FIND_STRUCTURES, {
 			filter: function(object){
-				//if(object.structureType != STRUCTURE_ROAD ) {
-				//	return false;
-				//}
-				//if(object.hits > object.hitsMax / 3) {
 				if(object.hits < hpCap && object.hits != object.hitsMax) {
                     return true;
 				}
@@ -97,18 +83,7 @@ function repairRoom(roomName) {
 
 		towers.forEach(tower => tower.repair(SR[0]));
 		towers.forEach(tower => tower.heal(woundedCreeps[0]));
-		//if(SR.hits < SR.hitsMax) {
 }
-
-/*function transferEnergy(energyTarget) {
-
-	if(creep.transfer(energyTarget[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-		creep.moveTo(energyTarget[0], {maxRooms: 3}, {visualizePathStyle: {stroke: '#66ff66'}});
-	}
-	if (creep.carry.energy == 0) {
-		creep.memory.inventoryLevel = "Empty";
-	}
-}*/
 
 function determineSpawn(currentRole, currentNum) {
 	
@@ -123,12 +98,8 @@ function determineSpawn(currentRole, currentNum) {
 		if (num == currentRole){
 			var prof = profile[i][1];
 			eval("Game.spawns['Spawn1'].spawnCreep( " + prof + "\, '" + creepName + "');");
-			console.log(prof)
-			console.log(creepName)
 		}
 	}
-	
-	
 }
 
 //clear dead creeps from memory
